@@ -15,7 +15,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mitr&effect=shadow-multiple" />
+
   <style>
+    body {
+      font-family: "Mitr", serif;
+    }
+
     .bg-image {
       background-image: url("../static/bg1.jpg");
       height: auto;
@@ -81,7 +87,7 @@
             <div class="col-lg-12">
               <div class="shadow rounded-lg" style="background-color: #DEF8FF">
                 <div class="p-4">
-                  <h4 class="font-weight-bold">สภาพอากาศปัจจุบัน</h4>
+                  <h4 class="font-weight-bold font-effect-shadow-multiple">สภาพอากาศปัจจุบัน</h4>
                   <hr />
                   <div class="row justify-content-between align-items-end">
                     <div class="col-lg-5">
@@ -146,7 +152,7 @@
       <div class="col-lg-12 ">
 
         <div class="mb-3">
-          <h4 class="font-weight-bold">การพยากรณ์สภาพอากาศ</h4>
+          <h4 class="font-weight-bold font-effect-shadow-multiple">การพยากรณ์สภาพอากาศ</h4>
         </div>
 
         <!-- Start Loop Slider -->
