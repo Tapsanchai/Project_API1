@@ -1,0 +1,48 @@
+ติดตั้งคำสั่งส่วนเสริม (*ติดตั้งทีหลังใน venv ได้)
+pip install
+easy_install pip
+pip install virtualenv
+pip install virtualenv virtualenvwrapper
+pip install flask
+pip install requests
+pip install json 
+pip install beautifulsoup4
+pip freeze (ตรวจสอบส่วนเสริมที่ติดตั้งทั้งหมดใน pip)
+
+เข้าไปโฟลเดอร์โปรเจค -> cmd,powershall
+   สร้างโหมด venv ลงในโปรเจค 
+	python -m venv {NameVenv}
+   เข้าใช้งานโหมด venv
+	venv\Scripts\activate
+   ลงส่วนเสริมใน pip ที่ต้องใช้งาน
+   สร้างโฟลเดอร์ชื่อ app -> สร้างไฟล์ชื่อ __init__.py 
+ app/__init__.py 
+        ภายในไฟล์ __init__.py
+	from flask import Flask
+	app = Flask(__name__)
+	from app import routes
+
+   สร้างไฟล์ชื่อ routes.py
+ app/routes.py
+        ภายในไฟล์ routes.py
+	from app import app
+
+	@app.route('/')
+	@app.route('/index')
+	def index():
+    		return "Hello Flask World!"
+
+    สร้างไฟล์ชื่อ project_script.py
+  {ProjectName}/project_script.py
+         ภายในไฟล์ project_script.py
+	from app import app
+
+    กำหนดไฟล์ที่ต้องการให้รันก่อน
+	set FLASK_APP=project_script.py 
+        set FLASK_DEBUG=1
+        set FLASK_ENV=development
+    รันโปรเจค
+	   flask run
+   ออกจากโหมด venv
+	   deactivate
+
