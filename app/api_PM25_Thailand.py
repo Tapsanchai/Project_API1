@@ -6,7 +6,11 @@ PM_25_url_TH = "http://api.airvisual.com/v2/city?city=Chiang Rai&state=Chiang Ra
 
 def show_pm25(url_th):
     
-    response = requests.get(url_th)
+    payload={}
+    files={}
+    headers = {}
+    
+    response = requests.request("GET", url_th, headers=headers, data=payload, files=files)
     result = json.loads(response.text)
     Now_AQI = result['data']['current']['pollution']['aqius']
     return Now_AQI
