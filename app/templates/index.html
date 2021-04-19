@@ -1,0 +1,307 @@
+{% extends "layout_web.html" %} 
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="bg-image">
+      <div class="container">
+        <!-- 1 -->
+        <div class="row mb-3">
+          <div class="col-12">
+            <div class="rounded-lg shadow bg-light">
+              <div class="row p-3 justify-content-md-center">
+                <div class="col-lg-1 text-center">
+                  <img
+                    class="img-fluid"
+                    src="{{ url_for('static',filename='logo_lanna.png')}}"
+                    alt=""
+                    style="width: 85px; height: auto;";
+                  />
+                </div>
+                <div
+                  class="col-lg-auto text-center align-self-lg-end margin-nameproject"
+                >
+                  <h5 class="font-weight-bold">
+                    การพัฒนาต้นแบบการนำเสนอข้อมูลอัตโนมัติผ่านเว็บแบบเรียลไทม์
+                    โดยเทคโนโลยี API
+                  </h5>
+                  <h5 class="font-weight-bold">
+                    Real-time web-based automated prototype development By API
+                    technology
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 2 -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="shadow rounded-lg" style="background-color: #DEF8FF">
+              <div class="p-4">
+                <h3 class="font-weight-bold font-effect-shadow-multiple">
+                  สภาพอากาศปัจจุบัน
+                </h3>
+                <hr />
+                <div class="row justify-content-between align-items-end">
+                  <div class="col-lg-8">
+                    <div class="text-left pl-4 mb-2">
+                      {% if Value_WToday.cond == 12 %}
+                      <img
+                        class="bg-weather-size"
+                        src="{{ url_for('static',filename='picture_Weather/SH.png') }}"
+                        alt=""
+                      />
+                      {% elif Value_WToday.cond >= 9 %}
+                      <img
+                        class="bg-weather-size"
+                        src="{{ url_for('static',filename='picture_Weather/SC.png') }}"
+                        alt=""
+                      />
+                      {% elif Value_WToday.cond >= 5 %}
+                      <img
+                        class="bg-weather-size"
+                        src="{{ url_for('static',filename='picture_Weather/HR.png') }}"
+                        alt=""
+                      />
+                      {% elif Value_WToday.cond >= 2 %}
+                      <img
+                        class="bg-weather-size"
+                        src="{{ url_for('static',filename='picture_Weather/PC.png') }}"
+                        alt=""
+                      />
+                      {% elif Value_WToday.cond == 1 %}
+                      <img
+                        class="bg-weather-size"
+                        src="{{ url_for('static',filename='picture_Weather/C.png') }}"
+                        alt=""
+                      />
+                      {% endif %}
+                    </div>
+                    <div class="pl-4 pr-4">
+                      <h5
+                        class="font-weight-bold text-truncate"
+                        style="width: 210px"
+                      >
+                        วันเวลา:
+                        <span
+                          class="ml-1 text-dark font-weight-normal"
+                          >{{Value_WT.Forecast_data7d[0].time}}</span
+                        >
+                      </h5>
+                      <h5 class="font-weight-bold">
+                        จังหวัด:
+                        <span class="ml-1 text-dark font-weight-normal"
+                          >{{Value_WT.Forecast_city}}</span
+                        >
+                        เขต:
+                        <span class="ml-1 text-dark font-weight-normal"
+                          >{{Value_WT.Forecast_amphoe}}</span
+                        >
+                      </h5>
+                      <h5 class="font-weight-bold">
+                        อุณหภูมิปัจจุบัน:
+                        <span class="ml-1 text-dark font-weight-normal">
+                          {{(Value_WToday.tc)|round(1)}} °C
+                        </span>
+                      </h5>
+                      <h5 class="font-weight-bold">
+                        สภาพอากาศ:
+                        <span class="ml-1 text-dark font-weight-normal">
+                          {% if Value_WToday.cond == 1 %}
+                          ท้องฟ้าแจ่มใส (Clear) {% elif
+                            Value_WToday.cond == 2 %}
+                          มีเมฆบางส่วน (Partly cloudy) {% elif
+                            Value_WToday.cond == 3 %}
+                          เมฆเป็นส่วนมาก (Cloudy) {% elif
+                            Value_WToday.cond == 4 %} มีเมฆมาก
+                          (Overcast) {% elif Value_WToday.cond
+                          == 5 %} ฝนตกเล็กน้อย (Light rain) {% elif
+                            Value_WToday.cond == 6 %} ฝนปานกลาง
+                          (Moderate rain) {% elif
+                            Value_WToday.cond == 7 %} ฝนตกหนัก
+                          (Heavy rain) {% elif
+                            Value_WToday.cond == 8 %} ฝนฟ้าคะนอง
+                          (Thunderstorm) {% elif
+                            Value_WToday.cond == 9 %}
+                          อากาศหนาวจัด (Very cold) {% elif
+                            Value_WToday.cond == 10 %} อากาศหนาว
+                          (Cold) {% elif Value_WToday.cond ==
+                          11 %} อากาศเย็น (Cool) {% elif
+                            Value_WToday.cond == 12 %}
+                          อากาศร้อนจัด (Very hot) {% endif %}
+                        </span>
+                      </h5>
+                      <h5 class="font-weight-bold">
+                        แรงลม:
+                        <span class="ml-1 text-dark font-weight-normal"
+                          >{{(Value_WToday.ws10m * 3.6)|round(1)}}
+                          km/h</span
+                        >
+                        ความชื้น:
+                        <span class="ml-1 font-weight-normal"
+                          >{{Value_WToday.rh|round|int}} %</span
+                        >
+                      </h5>
+                      <h5 class="font-weight-bold">
+                        ดัชนี AQI(PM2.5):
+                        <span class="ml-1 font-weight-normal text-danger"
+                          >{{Value_PM25}}</span
+                        >
+                      </h5>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 text-center">
+                    <img
+                      class="img-fluid"
+                      src="{{ url_for('static',filename='man_report_shadow.png')}}"
+                      alt=""
+                      style="height: 290px; width: auto"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+    <!-- WF7Day box -->
+    <div class="row mt-5">
+        <div class="col-lg-12">
+          <div class="mb-3">
+            <h3 class="font-weight-bold font-effect-shadow-multiple">
+              <i class="fas fa-cloud"></i> การพยากรณ์สภาพอากาศ
+            </h3>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="owl-carousel owl-theme">
+                <!-- 1 card -->
+                {% for i in Value_WT.Forecast_data7d if i !=
+                  Value_WT.Forecast_data7d[0] %}
+                <div class="item">
+                  <div class="card mb-4 shadow border-light rounded-lg">
+                    <div
+                      class="text-center p-2 rounded-lg"
+                      style="background-color: #2561a1"
+                    >
+                      {% if i.data.cond == 12 %}
+                      <img
+                        class="bg-weather-size"
+                        src="{{ url_for('static',filename='picture_Weather/SH.png') }}"
+                        alt=""
+                      />
+                      {% elif i.data.cond >= 9 %}
+                      <img
+                        class="bg-weather-size rounded-lg"
+                        src="{{ url_for('static',filename='picture_Weather/SC.png') }}"
+                        alt=""
+                      />
+                      {% elif i.data.cond >= 5 %}
+                      <img
+                        class="bg-weather-size rounded-lg"
+                        src="{{ url_for('static',filename='picture_Weather/HR.png') }}"
+                        alt=""
+                      />
+                      {% elif i.data.cond >= 2 %}
+                      <img
+                        class="bg-weather-size rounded-lg"
+                        src="{{ url_for('static',filename='picture_Weather/PC.png') }}"
+                        alt=""
+                      />
+                      {% elif i.data.cond == 1 %}
+                      <img
+                        class="bg-weather-size rounded-lg"
+                        src="{{ url_for('static',filename='picture_Weather/C.png') }}"
+                        alt=""
+                      />
+                      {% endif %}
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-title font-weight-bold text-truncate"
+                      style="width: 160px">{{i.time}}</h4>
+                      <h5 class="font-weight-bold">
+                        จังหวัด:
+                        <span class="text-secondary font-weight-normal"
+                          >{{Value_WT.Forecast_city}}</span
+                        >
+                        เขต:
+                        <span class="text-secondary font-weight-normal"
+                          >{{Value_WT.Forecast_amphoe}}</span
+                        >
+                      </h5>
+                      <h5 class="font-weight-bold">
+                        อุณหภูมิ:
+                        <span class="text-secondary font-weight-normal"
+                          >{{ (i.data.tc_min)|round(1) }} -
+                          {{ (i.data.tc_max)|round(1) }} °C</span> 
+                      </h5>
+                      <h5 class="font-weight-bold text-truncate">
+                        สภาพอากาศ:
+                        <span class="text-secondary font-weight-normal"
+                          >{% if i.data.cond == 1 %}
+                          ท้องฟ้าแจ่มใส (Clear) {% elif
+                          i.data.cond == 2 %}
+                          มีเมฆบางส่วน (Partly cloudy) {% elif
+                          i.data.cond == 3 %}
+                          เมฆเป็นส่วนมาก (Cloudy) {% elif
+                          i.data.cond == 4 %} มีเมฆมาก
+                          (Overcast) {% elif i.data.cond
+                          == 5 %} ฝนตกเล็กน้อย (Light rain) {% elif
+                          i.data.cond == 6 %} ฝนปานกลาง
+                          (Moderate rain) {% elif
+                          i.data.cond == 7 %} ฝนตกหนัก
+                          (Heavy rain) {% elif
+                          i.data.cond == 8 %} ฝนฟ้าคะนอง
+                          (Thunderstorm) {% elif
+                          i.data.cond == 9 %}
+                          อากาศหนาวจัด (Very cold) {% elif
+                          i.data.cond == 10 %} อากาศหนาว
+                          (Cold) {% elif i.data.cond ==
+                          11 %} อากาศเย็น (Cool) {% elif
+                          i.data.cond == 12 %}
+                          อากาศร้อนจัด (Very hot) {% endif %}
+                        </span>
+                      </h5>
+                      <h5 class="font-weight-bold">
+                        แรงลม:
+                        <span class="ml-1 font-weight-normal text-secondary"
+                          >{{ (i.data.ws10m * 3.6)|round(1) }} 
+                          km/h</span
+                        >
+                      </h5>
+                      <h5 class="font-weight-bold">
+                        ความชื้น:
+                        <span class="ml-1 font-weight-normal text-secondary"
+                          >{{ i.data.rh|round|int }} %</span
+                        >
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<div class="container-fluid" style="background-color: #e1f4f9">
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-lg-12 text-right mt-4 mb-2">
+        <h5 class="font-weight-bold">จัดทำเว็บไซต์โดย</h5>
+        <h5>นายธาราพิเชษฐ์ ขาวประโคน สส.2.2</h5>
+        <h5>สาขาวิชาระบบสารสนเทศทางธุรกิจ (การจัดการระบบสารสนเทศ)</h5>
+        <h5>บริหารธุรกิจบัณฑิต มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา เชียงราย</h5>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
